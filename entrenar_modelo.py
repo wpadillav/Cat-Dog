@@ -59,7 +59,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 import glob
 import matplotlib
-matplotlib.use('TkAgg')  # Añade esta línea antes de importar pyplot
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def verificar_imagenes(directorio):
@@ -191,7 +191,9 @@ def main():
             plt.xlabel('Época')
             plt.ylabel('Pérdida')
             plt.legend()
-            plt.show()
+            plt.savefig('grafico_entrenamiento.png')
+            print("Gráfico guardado en grafico_entrenamiento.png")
+
         except Exception as e:
             print(f"Advertencia: No se pudieron mostrar las gráficas: {str(e)}")
             print("El modelo se ha guardado correctamente de todas formas.")

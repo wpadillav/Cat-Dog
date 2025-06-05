@@ -1,0 +1,14 @@
+# Librerías científicas básicas
+numpy
+
+# TensorFlow con soporte para GPU (CUDA + cuDNN)
+tensorflow[and-cuda]
+
+# Procesamiento de imágenes
+pillow
+opencv-python
+
+# Visualización
+matplotlib
+
+scipy
