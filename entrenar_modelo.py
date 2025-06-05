@@ -51,7 +51,7 @@ versiones_minimas = {
 
 for lib, version in dependencias.items():
     if version < versiones_minimas[lib]:
-        print(f"\nAdvertencia: La versión de {lib} ({version}) es menor que la recomendada ({versiones_minimas[lib]})")
+        print(f"\nAdvertencia: La versión de {lib} ({version}) es mayor que la recomendada ({versiones_minimas[lib]})")
         print(f"Esto podría causar problemas de compatibilidad.")
 
 from tensorflow.keras import layers, models
