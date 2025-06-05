@@ -1,14 +1,7 @@
-# Librerías científicas básicas
-numpy
+numpy==2.1.3
+tensorflow[and-cuda]==2.19.0
+pillow==11.2.1
+opencv-python==4.11.0
+matplotlib==3.10.3
+scipy==1.15.3
 
-# TensorFlow con soporte para GPU (CUDA + cuDNN)
-tensorflow[and-cuda]
-
-# Procesamiento de imágenes
-pillow
-opencv-python
-
-# Visualización
-matplotlib
-
-scipy
