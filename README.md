@@ -1,4 +1,3 @@
-```markdown
 # Clasificador de Imágenes de Gatos y Perros 🐱🐶
 
 Este proyecto entrena un modelo de redes neuronales convolucionales (CNN) utilizando TensorFlow y Keras para clasificar imágenes entre **gatos** y **perros**. El modelo puede ser entrenado con una estructura básica de carpetas y luego utilizado para predicción.
