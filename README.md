@@ -1,6 +1,12 @@
-# Clasificador de Imágenes de Gatos y Perros 🐱🐶
+# 🐱🐶 Clasificador de Imágenes de Gatos y Perros
 
-Este proyecto entrena un modelo de redes neuronales convolucionales (CNN) utilizando TensorFlow y Keras para clasificar imágenes entre **gatos** y **perros**. El modelo puede ser entrenado con una estructura básica de carpetas y luego utilizado para predicción.
+![Python](https://img.shields.io/badge/python-3.12%2B-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.19.0-orange)
+![GPU Support](https://img.shields.io/badge/GPU-Supported-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen)
+
+Este proyecto entrena una red neuronal convolucional (CNN) utilizando TensorFlow y Keras para clasificar imágenes como **gato** o **perro**. El entrenamiento aprovecha la GPU (CUDA) si está disponible y correctamente configurada.
 
 ---
 
@@ -9,13 +15,14 @@ Este proyecto entrena un modelo de redes neuronales convolucionales (CNN) utiliz
 ```
 
 .
-├── dataset/
-│   ├── cat/                        # Imágenes de gatos
-│   └── dog/                        # Imágenes de perros
-├── entrenar\_modelo.py             # Script principal para entrenamiento del modelo
-├── grafico\_entrenamiento.png      # Resultados visuales del entrenamiento (precisión y pérdida)
-├── README.md                       # Documentación del proyecto
-└── requirements.txt                # Dependencias del entorno
+├── dataset/                      # Contiene las imágenes .jpg de entrenamiento
+│   ├── cat/                     # Imágenes de gatos
+│   └── dog/                     # Imágenes de perros
+├── entrenar\_modelo.py          # Script principal de entrenamiento
+├── grafico\_entrenamiento.png   # Gráfico con precisión y pérdida
+├── requirements.txt            # Dependencias necesarias
+├── .gitignore                  # Archivos excluidos del repositorio
+└── README.md                   # Documentación del proyecto
 
 ````
 
@@ -25,29 +32,19 @@ Este proyecto entrena un modelo de redes neuronales convolucionales (CNN) utiliz
 
 Este script realiza las siguientes tareas:
 
-1. **Verificación de dependencias**  
-   Comprueba la versión de las principales bibliotecas utilizadas y muestra advertencias si no coinciden con las versiones recomendadas.
-
-2. **Validación de imágenes**  
-   Recorre el directorio `dataset/cat` y `dataset/dog` para verificar imágenes corruptas (por ejemplo, truncadas) y las elimina automáticamente.
-
-3. **Carga y preprocesamiento de datos**  
-   Usa `ImageDataGenerator` para aplicar aumentos de datos y dividir automáticamente los datos en entrenamiento (80%) y validación (20%).
-
-4. **Definición del modelo CNN**  
-   Crea un modelo secuencial con capas convolucionales, de pooling y completamente conectadas para la clasificación binaria.
-
-5. **Entrenamiento**  
-   Entrena el modelo durante 15 épocas, registrando precisión y pérdida en cada época.
-
-6. **Guardado del modelo**  
-   Guarda el modelo entrenado en formato `.h5` (`modelo_gatos_perros.h5`) y genera un gráfico visual (`grafico_entrenamiento.png`).
+1. **Verifica versiones de librerías críticas**: TensorFlow, Pillow, Matplotlib.
+2. **Valida imágenes** `.jpg`: elimina automáticamente las corruptas.
+3. **Carga los datos**: separa 80% para entrenamiento y 20% para validación usando `ImageDataGenerator`.
+4. **Define una CNN sencilla** para clasificación binaria.
+5. **Entrena el modelo con soporte GPU** si está disponible.
+6. **Aplica EarlyStopping y guarda el mejor modelo** en formato `.keras`.
+7. **Genera un gráfico** de precisión y pérdida por época.
 
 ---
 
-## 🛠️ Instalación
+## 📦 Instalación
 
-### 1. Crear entorno virtual (opcional pero recomendado)
+### 1. Crear entorno virtual (opcional)
 
 ```bash
 python3 -m venv lib_pip
@@ -62,40 +59,63 @@ pip install -r requirements.txt
 
 ---
 
-## 🧪 Requisitos de las librerías
+## 🧪 Dataset
 
-Contenido del archivo `requirements.txt`:
+Se requiere la siguiente estructura:
 
 ```
-numpy                  # Manipulación eficiente de arreglos y datos numéricos
-tensorflow[and-cuda]   # Framework de deep learning con soporte para GPU (cuDNN/CUDA)
-pillow                 # Carga y validación de imágenes (usado por PIL)
-opencv-python          # Procesamiento de imágenes (opcional, para visualización avanzada)
-matplotlib             # Visualización de resultados (precisión y pérdida)
-scipy                  # Funciones científicas adicionales utilizadas por algunas bibliotecas
+dataset/
+├── cat/
+│   ├── imagen1.jpg
+│   └── ...
+└── dog/
+    ├── imagen1.jpg
+    └── ...
+```
+
+* Todas las imágenes deben tener extensión `.jpg`.
+* Se eliminarán automáticamente las imágenes corruptas o inválidas.
+
+---
+
+## 📋 requirements.txt
+
+```
+tensorflow[and-cuda]==2.19.0
+pillow>=11.2.1
+matplotlib>=3.10.3
+scipy>=1.15.3
+packaging>=24.0
+```
+
+> ⚠️ **`numpy` y `opencv-python` no se requieren actualmente.**
+
+---
+
+## 📈 Resultados esperados
+
+* Precisión de validación esperada: entre **85% y 87%**
+* Modelo entrenado: `modelo_gatos_perros.keras`
+* Gráfico guardado: `grafico_entrenamiento.png`
+
+---
+
+## 🛑 Ignorados por Git
+
+Archivo `.gitignore`:
+
+```
+modelo_gatos_perros.h5
+modelo_gatos_perros.keras
+.env
+dataset/
 ```
 
 ---
 
-## 📈 Resultados del modelo
+## 📌 Repositorio
 
-* **Precisión en entrenamiento**: \~85.8%
-* **Precisión en validación**: \~86.4%
-* **Gráfico**: Se guarda automáticamente como `grafico_entrenamiento.png`.
-
----
-
-## 🔮 Futuros cambios
-
-* Reemplazar el guardado en `.h5` por el formato moderno de Keras (`.keras`).
-* Actualizar compatibilidad con Keras 3 y eliminar argumentos como `save_format`.
-* Incorporar `EarlyStopping` y `ModelCheckpoint` para mejorar el control del entrenamiento.
-
----
-
-## 📌 Requisitos del dataset
-
-* Las carpetas `dataset/cat/` y `dataset/dog/` deben contener imágenes `.jpg` bien formateadas.
-* No se recomienda el uso de imágenes TIFF ni RAW.
+Repositorio en GitHub:
+🔗 [https://github.com/wpadillav/Cat-Dog](https://github.com/wpadillav/Cat-Dog)
 
 ---
