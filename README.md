@@ -10,13 +10,12 @@ Este proyecto entrena un modelo de redes neuronales convolucionales (CNN) utiliz
 
 .
 ├── dataset/
-│   ├── cat/         # Imágenes de gatos
-│   └── dog/         # Imágenes de perros
-├── detectar\_mascota.py         # (Opcional) Script para hacer predicciones con el modelo entrenado
-├── entrenar\_modelo.py          # Script principal para entrenamiento del modelo
-├── grafico\_entrenamiento.png   # Resultados visuales del entrenamiento (precisión y pérdida)
-├── README.md                   # Documentación del proyecto
-└── requirements.txt            # Dependencias del entorno
+│   ├── cat/                        # Imágenes de gatos
+│   └── dog/                        # Imágenes de perros
+├── entrenar\_modelo.py             # Script principal para entrenamiento del modelo
+├── grafico\_entrenamiento.png      # Resultados visuales del entrenamiento (precisión y pérdida)
+├── README.md                       # Documentación del proyecto
+└── requirements.txt                # Dependencias del entorno
 
 ````
 
