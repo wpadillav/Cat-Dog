@@ -74,7 +74,8 @@ def main():
         target_size=(altura, ancho),
         batch_size=batch_size,
         class_mode='binary',
-        subset='training'
+        subset='training',
+        classes=['cat', 'dog']
     )
 
     validation_generator = datagen.flow_from_directory(
@@ -82,7 +83,8 @@ def main():
         target_size=(altura, ancho),
         batch_size=batch_size,
         class_mode='binary',
-        subset='validation'
+        subset='validation',
+        classes=['cat', 'dog']
     )
 
     print("Creando modelo...")
