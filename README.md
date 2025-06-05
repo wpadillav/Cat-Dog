@@ -6,6 +6,8 @@
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 ![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen)
 
+📝 Este proyecto está licenciado bajo los términos de la [Licencia MIT](LICENSE).
+
 Este proyecto entrena una red neuronal convolucional (CNN) utilizando TensorFlow y Keras para clasificar imágenes como **gato** o **perro**. El entrenamiento aprovecha la GPU (CUDA) si está disponible y correctamente configurada.
 
 ---
