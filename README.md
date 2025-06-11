@@ -113,8 +113,6 @@ scipy>=1.15.3
 packaging>=24.0
 ```
 
-> ⚠️ **`numpy` y `opencv-python` no son necesarios actualmente.**
-
 ---
 
 ## 📈 Resultados Esperados
@@ -122,27 +120,3 @@ packaging>=24.0
 * Precisión de validación estimada: **85% a 87%**
 * Modelo entrenado: `modelo_gatos_perros.keras`
 * Gráfico guardado: `grafico_entrenamiento.png`
-
----
-
-## 🛑 `.gitignore` recomendado
-
-Ejemplo de contenido:
-
-```
-*.keras
-*.h5
-.env
-__pycache__/
-*.pyc
-dataset/
-grafico_entrenamiento.png
-```
-
----
-
-## 📌 Repositorio
-
-Repositorio en GitHub:
-🔗 [https://github.com/wpadillav/Cat-Dog](https://github.com/wpadillav/Cat-Dog)
-
