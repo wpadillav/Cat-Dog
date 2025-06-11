@@ -1,0 +1,11 @@
+{
+  "image_height": 150,
+  "image_width": 150,
+  "batch_size": 32,
+  "num_epochs": 50,
+  "validation_split": 0.2,
+  "dataset_dir": "dataset",
+  "classes": ["cat", "dog"],
+  "model_output_path": "modelo_gatos_perros.keras",
+  "plot_output_path": "grafico_entrenamiento.png"
+}

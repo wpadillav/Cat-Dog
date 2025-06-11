@@ -18,13 +18,14 @@ Este proyecto entrena una red neuronal convolucional (CNN) utilizando TensorFlow
 
 .
 ├── dataset/                      # Contiene las imágenes .jpg de entrenamiento
-│   ├── cat/                     # Imágenes de gatos
-│   └── dog/                     # Imágenes de perros
-├── entrenar\_modelo.py          # Script principal de entrenamiento
-├── grafico\_entrenamiento.png   # Gráfico con precisión y pérdida
-├── requirements.txt            # Dependencias necesarias
-├── .gitignore                  # Archivos excluidos del repositorio
-└── README.md                   # Documentación del proyecto
+│   ├── cat/                      # Imágenes de gatos
+│   └── dog/                      # Imágenes de perros
+├── entrenar\_modelo.py           # Script principal de entrenamiento
+├── config.json                  # Parámetros de configuración del modelo
+├── grafico\_entrenamiento.png    # Gráfico generado tras el entrenamiento
+├── requirements.txt             # Dependencias necesarias
+├── .gitignore                   # Archivos excluidos del repositorio
+└── README.md                    # Documentación del proyecto
 
 ````
 
@@ -34,24 +35,47 @@ Este proyecto entrena una red neuronal convolucional (CNN) utilizando TensorFlow
 
 Este script realiza las siguientes tareas:
 
-1. **Verifica versiones de librerías críticas**: TensorFlow, Pillow, Matplotlib.
-2. **Valida imágenes** `.jpg`: elimina automáticamente las corruptas.
-3. **Carga los datos**: separa 80% para entrenamiento y 20% para validación usando `ImageDataGenerator`.
-4. **Define una CNN sencilla** para clasificación binaria.
-5. **Entrena el modelo con soporte GPU** si está disponible.
-6. **Aplica EarlyStopping y guarda el mejor modelo** en formato `.keras`.
-7. **Genera un gráfico** de precisión y pérdida por época.
+1. **Carga configuración desde `config.json`** para definir hiperparámetros y rutas.
+2. **Verifica versiones de librerías críticas**: TensorFlow, Pillow, Matplotlib.
+3. **Valida imágenes `.jpg`**: elimina automáticamente las corruptas.
+4. **Carga los datos y los separa** en 80% entrenamiento y 20% validación mediante `ImageDataGenerator`.
+5. **Define una CNN sencilla** para clasificación binaria (gato vs perro).
+6. **Entrena el modelo usando GPU si está disponible**, con `EarlyStopping` y `ModelCheckpoint`.
+7. **Guarda el mejor modelo entrenado** en formato `.keras`.
+8. **Genera y guarda un gráfico** de precisión y pérdida por época.
+
+---
+
+## ⚙️ Configuración (`config.json`)
+
+Ejemplo de archivo `config.json`:
+
+```json
+{
+  "image_height": 150,
+  "image_width": 150,
+  "batch_size": 32,
+  "num_epochs": 50,
+  "validation_split": 0.2,
+  "dataset_dir": "dataset",
+  "classes": ["cat", "dog"],
+  "model_output_path": "modelo_gatos_perros.keras",
+  "plot_output_path": "grafico_entrenamiento.png"
+}
+````
+
+Puedes ajustar cualquier parámetro sin modificar el código Python directamente.
 
 ---
 
 ## 📦 Instalación
 
-### 1. Crear entorno virtual (opcional)
+### 1. Crear entorno virtual (opcional pero recomendado)
 
 ```bash
 python3 -m venv lib_pip
 source lib_pip/bin/activate
-````
+```
 
 ### 2. Instalar dependencias
 
@@ -63,7 +87,7 @@ pip install -r requirements.txt
 
 ## 🧪 Dataset
 
-Se requiere la siguiente estructura:
+Asegúrate de contar con la siguiente estructura de carpetas:
 
 ```
 dataset/
@@ -75,14 +99,13 @@ dataset/
     └── ...
 ```
 
-* Todas las imágenes deben tener extensión `.jpg`.
-* Se eliminarán automáticamente las imágenes corruptas o inválidas.
+> 📝 Todas las imágenes deben tener extensión `.jpg`. Las imágenes inválidas o corruptas serán detectadas y eliminadas automáticamente al iniciar el entrenamiento.
 
 ---
 
-## 📋 requirements.txt
+## 📋 `requirements.txt`
 
-```
+```txt
 tensorflow[and-cuda]==2.19.0
 pillow>=11.2.1
 matplotlib>=3.10.3
@@ -90,27 +113,30 @@ scipy>=1.15.3
 packaging>=24.0
 ```
 
-> ⚠️ **`numpy` y `opencv-python` no se requieren actualmente.**
+> ⚠️ **`numpy` y `opencv-python` no son necesarios actualmente.**
 
 ---
 
-## 📈 Resultados esperados
+## 📈 Resultados Esperados
 
-* Precisión de validación esperada: entre **85% y 87%**
+* Precisión de validación estimada: **85% a 87%**
 * Modelo entrenado: `modelo_gatos_perros.keras`
 * Gráfico guardado: `grafico_entrenamiento.png`
 
 ---
 
-## 🛑 Ignorados por Git
+## 🛑 `.gitignore` recomendado
 
-Archivo `.gitignore`:
+Ejemplo de contenido:
 
 ```
-modelo_gatos_perros.h5
-modelo_gatos_perros.keras
+*.keras
+*.h5
 .env
+__pycache__/
+*.pyc
 dataset/
+grafico_entrenamiento.png
 ```
 
 ---
@@ -120,4 +146,3 @@ dataset/
 Repositorio en GitHub:
 🔗 [https://github.com/wpadillav/Cat-Dog](https://github.com/wpadillav/Cat-Dog)
 
----
